@@ -14,8 +14,9 @@ This version includes features for creating exams, managing students and results
 
 ---
 
-### Reminder:
-* this is a `beta` version, so expect some bugs and missing features.
+### ⚠️ Beta Notice:
+* This is a console-only beta version using `Scanner`, `System.out` and Java 17 features.
+  `GUI`, backend integrations, and web interfaces are not included **(yet)**.
 
 ---
 
@@ -25,11 +26,36 @@ This version includes features for creating exams, managing students and results
 
 ## 📅 Version History
 
-- **v1.1.0**: Enhanced reporting features and user interface improvements
-- **v1.2.0**: Integration with external learning management systems (LMS)
-- **v1.3.0**: Mobile app support for exam management on the go
-- **v2.0.0**: Major overhaul with AI-driven analytics and personalized learning paths
-- **v2.1.0**: Advanced security features and data encryption
+> **`(Beta)`** `v.1.0 Alpha` - `2025-06-22`
+- **`v1.0.0` Console Prototype Init**
+  - Basic subject and score input via `Scanner`
+  - Simple grade calculation logic with `System.out.println()`
+  - Manual test cases, no persistence or storage
+- **`v2.0.0` Modular Structure**:
+    - Split logic into packages like `Helpers`, `Models`, and `Methods`
+    - Introduced color-coded output using `ANSI` escape sequences
+    - Added helper utilities for `printing`, `debugging` and `formatting`
+- **`v3.0.0` Enhanced Output**:
+    - Added `loading` animations and `debug toggle` support
+    - Improved printing methods: `formatted`, `same-line`, `colored`
+    - `Timestamps` added to logs for better traceability
+- **`v4.0.0` Simulated User Login Flow**:
+    - Username prompt with animated login simulation
+    - Clear console output using `ANSI codes` (limited to supported terminals)
+    - Improved user feedback with personalized `welcome messages`
+- **`v5.0.0` First Stable Console Version**:
+    - Fully modularized `console app` with reusable helper classes
+    - Polished input/output experience with `colors`, `sections`, and `loading states`
+    - Ready for `CLI` demos, code reviews, and future `GUI layering`
+
+
+> `(Planned Features)` `v.1.0 Alpha` - `2025-07-?`
+- **`v1.0.0`**: GUI version using JavaFX or Swing
+- **`v1.1.0`**: Enhanced reporting features and user interface improvements
+- **`v1.2.0`**: Integration with external learning management systems (LMS)
+- **`v2.0.0`**: Mobile app support for exam management on the go
+- **`v3.0.0`**: Major overhaul with AI-driven analytics and personalized learning paths
+- **`v4.0.0`**: Advanced security features and data encryption
 
 ---
 
@@ -62,7 +88,7 @@ This version includes features for creating exams, managing students and results
 
 ---
 
-## 🛠 Technology Stack
+## 🛠 Technology Stack `future (Alpha v.2.0.0)`
 
 | Component       | Technology                          |
 |-----------------|-------------------------------------|
