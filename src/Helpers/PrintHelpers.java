@@ -2,45 +2,31 @@ package Helpers;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import Helpers.Colors.AnsiColor;
 
 public class PrintHelpers {
 
+    // ----------------- Constants ----------------- //
     private static boolean debugMode = true;
-
-    // ANSI color codes
-    private static final String RESET = "\u001B[0m";
-    private static final String RED = "\u001B[31m";
-    private static final String GREEN = "\u001B[32m";
-    private static final String YELLOW = "\u001B[33m";
-    private static final String BLUE = "\u001B[34m";
-    private static final String CYAN = "\u001B[36m";
-    private static final String GRAY = "\u001B[90m";
-
-
-    // Animation config
-    private static final int ANIMATION_DURATION_MS = 1000;
+    private static final int ANIMATION_DURATION_MS = 3000;
     private static final int DOT_INTERVAL_MS = 250;
 
 
 
-    // ----------------- Section Helpers ----------------- //
+    // ----------------- Main Public Methods ----------------- //
     public static void printTitle(String title) {
-        /*animateDots("TITLE");*/
-        System.out.println(CYAN + "\n==== " + title.toUpperCase() + " ====" + RESET);
+        System.out.println(AnsiColor.CYAN + "\n==== " + title.toUpperCase() + " ====" + AnsiColor.RESET);
     }
 
     public static void printSection(String section) {
-        /*animateDots("SECTION");*/
-        System.out.println("\n" + CYAN + "---- " + section + " ----" + RESET);
+        System.out.println("\n" + AnsiColor.CYAN + "---- " + section + " ----" + AnsiColor.RESET);
     }
 
     public static void printSeparator() {
-        System.out.println("--------------------------------------------------");
+        System.out.println();
+        System.out.println(AnsiColor.GRAY + "-------------------------[Senan Qulamov ©2025]-------------------------" + AnsiColor.RESET);
     }
 
-
-
-    // Debug toggle
     public static void enableDebug() {
         debugMode = true;
     }
@@ -49,9 +35,7 @@ public class PrintHelpers {
         debugMode = false;
     }
 
-
-
-    // ----------------- Animation ----------------- //
+    // ----------------- Loading Animation Method ----------------- //
     private static void animateDots(String label) {
         long startTime = System.currentTimeMillis();
         long endTime = startTime + ANIMATION_DURATION_MS;
@@ -64,13 +48,14 @@ public class PrintHelpers {
 
             String dots = ".".repeat(dotCount % 4);
             String line = String.format(
-                    "\r[Loading ] (%ds / ~%ds) %s   ",
+                    "\r[%s] (%ds / ~%ds) %s   ",
+                    label,
                     elapsedSeconds,
                     totalEstimated,
                     dots
             );
 
-            System.out.print(line);
+            System.out.print(AnsiColor.YELLOW + line + AnsiColor.RESET);
             System.out.flush();
 
             try {
@@ -90,71 +75,133 @@ public class PrintHelpers {
 
 
 
-
-    // ----------------- Base Printers ----------------- //
+    // ----------------- Base Methods ----------------- //
     private static String timestamp() {
         return "[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + "]";
     }
 
-    private static void log(String label, String color, String message) {
-        /*animateDots(label);*/
-        System.out.println(color + timestamp() + " [" + label + "] " + message + RESET);
+    private static void log(String label, AnsiColor color, String message) {
+        System.out.println(color + message + " [" + label + "]" + timestamp() + AnsiColor.RESET);
+    }
+
+    private static void log_same_line(String label, AnsiColor color, String message) {
+        System.out.print(color + message + " [" + label + "] " + timestamp() + AnsiColor.RESET);
     }
 
 
 
     // ----------------- Main Public Methods ----------------- //
     public static void print(String message) {
-        /*animateDots("PRINT");*/
         System.out.println(message);
     }
 
     public static void printInfo(String message) {
-        log("INFO", BLUE, message);
+        log("INFO", AnsiColor.BLUE, message);
     }
 
     public static void printWarning(String message) {
-        log("WARNING", YELLOW, message);
+        log("WARNING", AnsiColor.YELLOW, message);
     }
 
     public static void printSuccess(String message) {
-        log("SUCCESS", GREEN, message);
+        log("SUCCESS", AnsiColor.GREEN, message);
     }
 
     public static void printError(String message) {
-        log("ERROR", RED, message);
+        log("ERROR", AnsiColor.RED, message);
     }
 
     public static void printDebug(String message) {
         if (debugMode) {
-            log("DEBUG", GRAY, message);
+            log("DEBUG", AnsiColor.GRAY, message);
         }
     }
 
     public static void printFormatted(String format, Object... args) {
-        /*animateDots("PRINT");*/
         System.out.printf(format + "%n", args);
     }
 
     public static void printFormattedInfo(String format, Object... args) {
-        log("INFO", BLUE, String.format(format, args));
+        log("INFO", AnsiColor.BLUE, String.format(format, args));
     }
 
     public static void printFormattedWarning(String format, Object... args) {
-        log("WARNING", YELLOW, String.format(format, args));
+        log("WARNING", AnsiColor.YELLOW, String.format(format, args));
     }
 
     public static void printFormattedSuccess(String format, Object... args) {
-        log("SUCCESS", GREEN, String.format(format, args));
+        log("SUCCESS", AnsiColor.GREEN, String.format(format, args));
     }
 
     public static void printFormattedError(String format, Object... args) {
-        log("ERROR",RED , String.format(format, args));
+        log("ERROR", AnsiColor.RED, String.format(format, args));
     }
 
     public static void printFormattedDebug(String format, Object... args) {
         if (debugMode) {
-            log("DEBUG", GRAY, String.format(format, args));
+            log("DEBUG", AnsiColor.GRAY, String.format(format, args));
         }
+    }
+
+    public static void print_same_line(String message) {
+        System.out.print(message);
+    }
+
+    public static void printInfo_same_line(String message) {
+        log_same_line("INFO", AnsiColor.BLUE, message);
+    }
+
+    public static void printWarning_same_line(String message) {
+        log_same_line("WARNING", AnsiColor.YELLOW, message);
+    }
+
+    public static void printSuccess_same_line(String message) {
+        log_same_line("SUCCESS", AnsiColor.GREEN, message);
+    }
+
+    public static void printError_same_line(String message) {
+        log_same_line("ERROR", AnsiColor.RED, message);
+    }
+
+    public static void printDebug_same_line(String message) {
+        if (debugMode) {
+            log_same_line("DEBUG", AnsiColor.GRAY, message);
+        }
+    }
+
+    public static void printFormatted_same_line(String format, Object... args) {
+        System.out.printf(format + "%n", args);
+    }
+
+    public static void printFormattedInfo_same_line(String format, Object... args) {
+        log_same_line("INFO", AnsiColor.BLUE, String.format(format, args));
+    }
+
+    public static void printFormattedWarning_same_line(String format, Object... args) {
+        log_same_line("WARNING", AnsiColor.YELLOW, String.format(format, args));
+    }
+
+    public static void printFormattedSuccess_same_line(String format, Object... args) {
+        log_same_line("SUCCESS", AnsiColor.GREEN, String.format(format, args));
+    }
+
+    public static void printFormattedError_same_line(String format, Object... args) {
+        log_same_line("ERROR", AnsiColor.RED, String.format(format, args));
+    }
+
+    public static void printFormattedDebug_same_line(String format, Object... args) {
+        if (debugMode) {
+            log_same_line("DEBUG", AnsiColor.GRAY, String.format(format, args));
+        }
+    }
+
+    public static void clear_console() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    public static void printLoading(String message) {
+        System.out.print(message);
+        animateDots(message);
     }
 }
