@@ -18,19 +18,19 @@ public class PrintHelpers {
 
 
     // Animation config
-    private static final int ANIMATION_DURATION_MS = 3500;
+    private static final int ANIMATION_DURATION_MS = 1000;
     private static final int DOT_INTERVAL_MS = 250;
 
 
 
     // ----------------- Section Helpers ----------------- //
     public static void printTitle(String title) {
-        animateDots("TITLE");
+        /*animateDots("TITLE");*/
         System.out.println(CYAN + "\n==== " + title.toUpperCase() + " ====" + RESET);
     }
 
     public static void printSection(String section) {
-        animateDots("SECTION");
+        /*animateDots("SECTION");*/
         System.out.println("\n" + CYAN + "---- " + section + " ----" + RESET);
     }
 
@@ -97,7 +97,7 @@ public class PrintHelpers {
     }
 
     private static void log(String label, String color, String message) {
-        animateDots(label);
+        /*animateDots(label);*/
         System.out.println(color + timestamp() + " [" + label + "] " + message + RESET);
     }
 
@@ -105,7 +105,7 @@ public class PrintHelpers {
 
     // ----------------- Main Public Methods ----------------- //
     public static void print(String message) {
-        animateDots("PRINT");
+        /*animateDots("PRINT");*/
         System.out.println(message);
     }
 
@@ -132,7 +132,7 @@ public class PrintHelpers {
     }
 
     public static void printFormatted(String format, Object... args) {
-        animateDots("PRINT");
+        /*animateDots("PRINT");*/
         System.out.printf(format + "%n", args);
     }
 
